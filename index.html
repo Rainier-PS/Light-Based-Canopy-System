@@ -2,390 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Light-Based Canopy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive light-based canopy system using Arduino - STEM project with LDR sensor, servo motor, and LED lighting. Learn to build this smart architecture prototype for exhibitions and education." />
+  <meta name="keywords" content="Arduino canopy, light sensor project, smart architecture prototype, STEM project, LDR sensor, servo motor control, interactive canopy, electronics project, DIY Arduino, light-responsive system" />
+  <meta name="author" content="Rainier P.S." />
+  <meta property="og:title" content="Light-Based Canopy System - Arduino Project" />
+  <meta property="og:description" content="Interactive light-responsive canopy system built with Arduino for STEM education and smart architecture demonstrations" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourwebsite.com/light-canopy" />
+  <meta property="og:image" content="https://yourwebsite.com/images/Front-View.jpg" />
+  <title>Light-Based Canopy System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    :root {
-      --primary-color: #2979ff;
-      --accent-color: #82b1ff;
-      --text-color: #222831;
-      --card-bg: #ffffff;
-      --gradient-start: #e3f2fd;
-      --gradient-end: #f0f7ff;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      background-attachment: fixed;
-      color: var(--text-color);
-      scroll-behavior: smooth;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .title-card {
-      background: var(--card-bg);
-      padding: 1rem 1rem 2rem;
-      border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-      text-align: center;
-    }
-
-    .title-banner img {
-      width: 100%;
-      max-height: 280px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-    }
-
-    .title-card h1 {
-      font-size: 2.5rem;
-      color: var(--primary-color);
-    }
-
-    .subtitle {
-      font-style: italic;
-      color: #555;
-      margin-top: 0.5rem;
-    }
-
-    section {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
-      text-align: center;
-    }
-
-    section h2 {
-      color: var(--primary-color);
-      margin-bottom: 1.2rem;
-      font-weight: 700;
-    }
-
-    .side-by-side {
-      display: flex;
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-
-    .side-by-side > section {
-      flex: 1;
-      margin: 0;
-    }
-
-    @media (max-width: 768px) {
-      .side-by-side {
-        flex-direction: column;
-      }
-    }
-
-    .photo-grid-2x2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .photo-card {
-      background: #f9fbff;
-      border-radius: 12px;
-      padding: 0.5rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 8px;
-      flex-grow: 1;
-    }
-
-    .caption {
-      margin-top: 0.5rem;
-      font-size: 0.95rem;
-      color: #555;
-    }
-
-    .burger-menu {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background: var(--primary-color);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .burger-menu i {
-      color: white;
-      font-size: 26px;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 280px;
-      height: 100vh;
-      background: var(--primary-color);
-      color: white;
-      padding: 80px 20px 20px;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-      transition: right 0.3s ease;
-      z-index: 1000;
-      overflow-y: auto;
-      pointer-events: none;
-    }
-
-    .sidebar.active {
-      right: 0;
-      pointer-events: auto;
-    }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      font-size: 1.2rem;
-      padding: 12px 10px;
-      margin: 12px 0;
-      border-radius: 8px;
-      text-align: center;
-      transition: background 0.3s;
-    }
-
-    .sidebar a:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .return-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: var(--primary-color);
-      color: #fff;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 1001;
-    }
-
-    .return-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .connect-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
-      text-align: center;
-    }
-
-    .connect-card h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-      font-weight: 700;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-    }
-
-    .social-links a {
-      color: var(--primary-color);
-      font-size: 1.4rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-      transition: all 0.25s ease;
-    }
-
-    .social-links a:hover {
-      background: var(--accent-color);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      background: var(--card-bg);
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    footer p {
-      margin: 10px 0;
-      color: var(--text-color);
-    }
-  </style>
 </head>
-<body>
+<body class="font-sans bg-gradient-to-br from-blue-100 to-blue-50 text-gray-800">
 
-<div class="burger-menu" onclick="toggleSidebar()">
-  <i class="fas fa-bars"></i>
+<div class="fixed top-5 right-5 w-12 h-12 bg-blue-600 rounded-full flex justify-center items-center cursor-pointer z-[1001]" onclick="toggleSidebar()">
+  <i class="fas fa-bars text-white text-2xl"></i>
 </div>
 
-<nav class="sidebar" id="sidebar">
-  <a href="#overview" onclick="toggleSidebar()">Overview</a>
-  <a href="#materials" onclick="toggleSidebar()">Materials</a>
-  <a href="#assembly" onclick="toggleSidebar()">Assembly</a>
-  <a href="#photos" onclick="toggleSidebar()">Photos</a>
-  <a href="#videos" onclick="toggleSidebar()">Video Demo</a>
-  <a href="#blueprints" onclick="toggleSidebar()">Blueprints</a>
+<div id="sidebarOverlay" class="fixed top-0 left-0 w-full h-full bg-black/50 z-[999] opacity-0 invisible transition-all duration-300" onclick="toggleSidebar()"></div>
+
+<nav id="sidebar" class="fixed top-0 right-[-300px] w-72 h-full bg-blue-600 text-white p-6 pt-20 shadow-lg transition-all duration-300 z-[1000] overflow-y-auto pointer-events-none">
+  <a href="#overview" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20">Overview</a>
+  <a href="#materials" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20">Materials</a>
+  <a href="#assembly" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20">Assembly</a>
+  <a href="#photos" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20">Photos</a>
+  <a href="#videos" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20">Video Demo</a>
+  <a href="#schematics" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20">Schematics</a>
 </nav>
 
-<div class="return-top" id="returnTop" onclick="scrollToTop()">
+<div id="returnTop" onclick="scrollToTop()" class="fixed bottom-8 right-8 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center cursor-pointer shadow-md opacity-0 invisible transition-all duration-300 z-[1001]">
   <i class="fas fa-arrow-up"></i>
 </div>
 
-<div class="container">
-  <article class="title-card">
-    <div class="title-banner">
-      <img src="Front%20View.jpg" alt="Light-Based Canopy banner image" />
+<div class="max-w-3xl mx-auto my-8 px-4">
+  <article class="bg-white p-6 pb-10 rounded-2xl shadow-lg text-center">
+    <div class="mb-6">
+      <img src="Front-View.jpg" alt="Light-Based Canopy System - Front View" class="w-full max-h-72 object-cover rounded-xl mb-6" />
     </div>
-    <h1>Light-Based Canopy System</h1>
-    <p class="subtitle">An interactive miniature canopy system using Arduino</p>
+    <h1 class="text-4xl text-blue-600 font-bold">Light-Based Canopy System</h1>
+    <p class="italic text-gray-600 mt-2">An interactive miniature canopy system using Arduino with light-responsive technology</p>
   </article>
 
-  <section id="overview">
-    <h2>Project Overview</h2>
-    <p>The Light-Based Canopy project is a miniature adaptive canopy system that adapts to ambient light using Arduino. Built using cardboard, servo, LDR, and LEDs, this prototype is ideal for STEM exhibitions, interactive showcases, and smart architecture concept demos.</p>
+  <section id="overview" class="bg-white rounded-xl p-8 my-8 shadow-md text-center">
+    <h2 class="text-blue-600 font-bold text-2xl mb-4">Project Overview</h2>
+    <p>The Light-Based Canopy project is a miniature adaptive canopy system that responds to ambient light using Arduino. Built using cardboard, servo motors, LDR sensors, and LED lighting, this prototype demonstrates smart architecture concepts and is ideal for STEM exhibitions, interactive showcases, and educational demonstrations of light-responsive systems.</p>
   </section>
 
-  <div class="side-by-side">
-    <section id="materials">
-      <h2>Materials & Tools</h2>
-      <ul style="text-align: left;">
-        <li>Arduino Uno</li>
-        <li>Light-dependent resistor (LDR)</li>
-        <li>LCD</li>
-        <li>LEDs</li>
-        <li>Servo</li>
+  <div class="flex flex-col md:flex-row gap-8 my-8">
+    <section id="materials" class="bg-white rounded-xl p-8 shadow-md text-center flex-1">
+      <h2 class="text-blue-600 font-bold text-2xl mb-4">Materials & Tools</h2>
+      <ul class="text-left list-disc list-inside space-y-2">
+        <li>Arduino Uno microcontroller</li>
+        <li>Light-dependent resistor (LDR sensor)</li>
+        <li>LCD display module</li>
+        <li>LED lighting components</li>
+        <li>Servo motor for canopy movement</li>
         <li>Breadboard & jumper wires</li>
         <li>Cardboard sheets</li>
         <li>USB cable or power bank</li>
-        <li>Basic tools (glue, scissors, markers)</li>
+        <li>Basic DIY tools (glue, scissors, markers)</li>
       </ul>
     </section>
 
-    <section id="assembly">
-      <h2>Assembly Process</h2>
-      <ol style="text-align: left;">
-        <li>Design the canopy structure using cardboard.</li>
-        <li>Mount the Servo, LDR, and LEDs.</li>
-        <li>Connect components to Arduino using a breadboard.</li>
-        <li>Write and upload the Arduino sketch for ambient light detection.</li>
-        <li>Test the system by varying light intensity and observing LED and servo response.</li>
+    <section id="assembly" class="bg-white rounded-xl p-8 shadow-md text-center flex-1">
+      <h2 class="text-blue-600 font-bold text-2xl mb-4">Assembly Process</h2>
+      <ol class="text-left list-decimal list-inside space-y-2">
+        <li>Design the canopy structure using cardboard for the frame</li>
+        <li>Mount the Servo motor, Light Dependent Resistor (LDR), and LED indicators</li>
+        <li>Connect all electronic components and sensors to the Arduino using a breadboard</li>
+        <li>Write and upload the Arduino sketch for ambient light detection and response</li>
+        <li>Test the system by varying light intensity and observing the canopy's response</li>
       </ol>
     </section>
   </div>
 
-  <section id="photos">
-    <h2>Project Photos</h2>
-    <div class="photo-grid-2x2">
-      <div class="photo-card">
-        <img src="Front%20View.jpg" alt="Front View" />
-        <p class="caption">Front View</p>
+  <section id="photos" class="bg-white rounded-xl p-8 shadow-md text-center mt-12">
+    <h2 class="text-blue-600 font-bold text-2xl mb-4">Project Photos</h2>
+    <div class="grid grid-cols-2 gap-4 mt-4">
+      <div class="bg-blue-50 rounded-xl p-2 shadow-sm flex flex-col">
+        <img src="Front-View.jpg" alt="Front View of Light-Based Canopy System" class="w-full h-full object-cover rounded-lg flex-grow" />
+        <p class="mt-2 text-sm text-gray-600">Front View</p>
       </div>
-      <div class="photo-card">
-        <img src="Back%20View.jpg" alt="Back View" />
-        <p class="caption">Back View</p>
+      <div class="bg-blue-50 rounded-xl p-2 shadow-sm flex flex-col">
+        <img src="Back-View.jpg" alt="Back View of Arduino Canopy Project" class="w-full h-full object-cover rounded-lg flex-grow" />
+        <p class="mt-2 text-sm text-gray-600">Back View</p>
       </div>
-      <div class="photo-card">
-        <img src="your-image3.jpg" alt="Side View" />
-        <p class="caption">Side View</p>
+      <div class="bg-blue-50 rounded-xl p-2 shadow-sm flex flex-col">
+        <img src="Side-View.jpg" alt="Side View of Smart Canopy Prototype" class="w-full h-full object-cover rounded-lg flex-grow" />
+        <p class="mt-2 text-sm text-gray-600">Side View</p>
       </div>
-      <div class="photo-card">
-        <img src="Top%20View.jpg" alt="Top View" />
-        <p class="caption">Top View</p>
+      <div class="bg-blue-50 rounded-xl p-2 shadow-sm flex flex-col">
+        <img src="Top-View.jpg" alt="Top View of Light-Responsive Canopy" class="w-full h-full object-cover rounded-lg flex-grow" />
+        <p class="mt-2 text-sm text-gray-600">Top View</p>
       </div>
     </div>
   </section>
 
-  <section id="videos">
-    <h2>Video Demonstration</h2>
-    <video controls style="width: 100%; border-radius: 12px;">
-      <source src="your-video.mp4" type="video/mp4" />
+  <section id="videos" class="bg-white rounded-xl p-8 shadow-md text-center mt-12">
+    <h2 class="text-blue-600 font-bold text-2xl mb-4">Video Demonstration</h2>
+    <video controls class="w-full rounded-xl">
+      <source src="light-canopy-demo.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
+    <p class="mt-4">Watch the light-responsive canopy system in action, automatically adjusting to changing light conditions.</p>
   </section>
 
-  <section id="blueprints">
-    <h2>Blueprints & Diagrams</h2>
-    <img src="your-blueprint.jpg" alt="Blueprint" style="width: 100%; border-radius: 12px;" />
+  <section id="schematics" class="bg-white rounded-xl p-8 shadow-md text-center mt-12">
+    <h2 class="text-blue-600 font-bold text-2xl mb-4">Circuit Schematics</h2>
+    <img src="Wiring.jpg" alt="Detailed wiring diagram of Arduino canopy system" class="w-full rounded-xl" />
+    <p class="mt-4">Wiring setup showing Electronic Box and Arduino connections</p>
+    <img src="Circuit-Schematics.png" alt="Electronic circuit schematics for light-based canopy" class="w-full rounded-xl mt-6" />
+    <p class="mt-4">Complete circuit diagram for the light-responsive canopy system</p>
   </section>
 
-  <section class="connect-card">
-    <h2>Connect With Me</h2>
-    <div class="social-links">
-      <a href="https://rainier-ps.github.io/Landing-Page_Rainier/" target="_blank"><i class="fas fa-user"></i></a>
-      <a href="https://github.com/Rainier-PS" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="mailto:rainierps8@gmail.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://instagram.com/rainierps8" target="_blank"><i class="fab fa-instagram"></i></a>
+  <section class="bg-white rounded-xl p-8 shadow-md text-center my-8">
+    <h2 class="text-blue-600 font-bold text-xl mb-4">Connect With Me</h2>
+    <div class="flex justify-center gap-4 flex-wrap">
+      <a href="https://rainier-ps.github.io/Landing-Page_Rainier/" target="_blank" aria-label="My Portfolio" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fas fa-user"></i></a>
+      <a href="https://github.com/Rainier-PS" target="_blank" aria-label="GitHub Profile" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fab fa-github"></i></a>
+      <a href="mailto:rainierps8@gmail.com" aria-label="Email Me" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn Profile" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fab fa-linkedin"></i></a>
+      <a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter Profile" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com/rainierps8" target="_blank" aria-label="Instagram Profile" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fab fa-instagram"></i></a>
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2024 Rainier P.S. | All Rights Reserved</p>
-    <p>Made with ❤️ and 💻</p>
+  <footer class="bg-white rounded-xl shadow-md text-center p-6 mt-10">
+    <p class="text-gray-800">&copy; 2025 Rainier P.S. | All Rights Reserved</p>
+    <p class="mt-2">Made with ❤️ and 💻 | Arduino Light-Based Canopy System Project</p>
   </footer>
 </div>
 
 <script>
   function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("active");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("sidebarOverlay");
+    if (sidebar.classList.contains("right-0")) {
+      sidebar.classList.remove("right-0", "pointer-events-auto");
+      sidebar.classList.add("right-[-300px]", "pointer-events-none");
+      overlay.classList.remove("opacity-100", "visible");
+      overlay.classList.add("opacity-0", "invisible");
+    } else {
+      sidebar.classList.remove("right-[-300px]", "pointer-events-none");
+      sidebar.classList.add("right-0", "pointer-events-auto");
+      overlay.classList.remove("opacity-0", "invisible");
+      overlay.classList.add("opacity-100", "visible");
+    }
   }
 
   function scrollToTop() {
@@ -394,8 +158,24 @@
 
   window.onscroll = function () {
     const btn = document.getElementById("returnTop");
-    btn.classList.toggle("visible", window.scrollY > 100);
+    if (window.scrollY > 100) {
+      btn.classList.remove("opacity-0", "invisible");
+      btn.classList.add("opacity-100", "visible");
+    } else {
+      btn.classList.remove("opacity-100", "visible");
+      btn.classList.add("opacity-0", "invisible");
+    }
   };
+
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("sidebarOverlay");
+    const burger = document.querySelector('.fa-bars').parentElement;
+
+    if (sidebar.classList.contains('right-0') && !sidebar.contains(event.target) && !burger.contains(event.target)) {
+      toggleSidebar();
+    }
+  });
 </script>
 
 </body>
