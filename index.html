@@ -20,7 +20,7 @@
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
-<body class="font-sans bg-gradient-to-br from-blue-100 to-blue-50 text-gray-800 dark:from-gray-900 dark:to-gray-800 dark:text-gray-200 transition-colors duration-300">
+<body class="font-sans bg-gradient-to-br from-blue-100 to-blue-50 text-gray-800 dark:from-gray-900 dark:to-gray-900 dark:text-gray-200 transition-colors duration-300">
 
 <!-- Theme Toggle Button -->
 <div class="fixed top-5 left-5 w-12 h-12 bg-white dark:bg-gray-700 rounded-full flex justify-center items-center cursor-pointer z-[1001] shadow-md" onclick="toggleTheme()" title="Toggle Theme">
@@ -34,12 +34,14 @@
 <div id="sidebarOverlay" class="fixed top-0 left-0 w-full h-full bg-black/50 z-[999] opacity-0 invisible transition-all duration-300" onclick="toggleSidebar()"></div>
 
 <nav id="sidebar" class="fixed top-0 right-[-300px] w-72 h-full bg-blue-600 text-white p-6 pt-20 shadow-lg transition-all duration-300 z-[1000] overflow-y-auto pointer-events-none">
-  <a href="#overview" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">Overview</a>
-  <a href="#materials" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">Materials</a>
-  <a href="#assembly" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">Assembly</a>
-  <a href="#photos" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">Photos</a>
-  <a href="#videos" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">Video Demo</a>
-  <a href="#schematics" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">Schematics</a>
+  <a href="#overview" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">OVERVIEW</a>
+  <a href="#materials" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">MATERIALS</a>
+  <a href="#assembly" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">ASSEMBLY</a>
+  <a href="#photos" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">PHOTOS</a>
+  <a href="#videos" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">VIDEO DEMO</a>
+  <a href="#schematics" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">SCHEMATICS</a>
+  <a href="#code" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">ARDUINO CODE</a>
+  <a href="#contact" onclick="toggleSidebar()" class="block text-lg py-3 px-2 my-3 rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:translate-x-2">CONTACT</a>
 </nav>
 
 <div id="returnTop" onclick="scrollToTop()" class="fixed bottom-8 right-8 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center cursor-pointer shadow-md opacity-0 invisible transition-all duration-300 z-[1001]">
@@ -52,10 +54,10 @@
 <div class="max-w-3xl mx-auto my-8 px-4">
   <article class="bg-white dark:bg-gray-800 p-6 pb-10 rounded-2xl shadow-lg text-center transition-colors duration-300">
     <div class="mb-6">
-      <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/Front-View.jpg" alt="Light-Based Canopy System - Front View" class="w-full max-h-72 object-cover rounded-xl mb-6" />
+      <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/images/site/Front-View.jpg" alt="Light-Based Canopy System - Front View" class="w-full max-h-72 object-cover rounded-xl mb-6" />
     </div>
     <h1 class="text-4xl text-blue-600 font-bold">Light-Based Canopy System</h1>
-    <p class="italic text-gray-600 dark:text-gray-300 mt-2">An interactive miniature canopy system using Arduino with light-responsive technology</p>
+    <p class="italic text-gray-600 dark:text-gray-300 mt-2">An interactive miniature canopy system using Arduino with light-responsive technology.</p>
   </article>
 
   <section id="overview" class="bg-white dark:bg-gray-800 rounded-xl p-8 my-8 shadow-md text-center transition-colors duration-300">
@@ -68,14 +70,14 @@
       <h2 class="text-blue-600 font-bold text-2xl mb-4">Materials & Tools</h2>
       <ul class="text-left list-disc list-inside space-y-2">
         <li>Arduino Uno microcontroller</li>
-        <li>Light-dependent resistor (LDR sensor)</li>
+        <li>Light-dependent resistor (LDR)</li>
         <li>LCD display module</li>
         <li>LED lighting components</li>
         <li>Servo motor for canopy movement</li>
         <li>Breadboard & jumper wires</li>
         <li>Cardboard sheets</li>
-        <li>USB cable or power bank</li>
-        <li>Basic DIY tools (glue, scissors, markers)</li>
+        <li>USB cable & power bank</li>
+        <li>Basic DIY tools (hot glue, scissor, ruler, marker)</li>
       </ul>
     </section>
 
@@ -95,19 +97,19 @@
     <h2 class="text-blue-600 font-bold text-2xl mb-4">Project Photos</h2>
     <div class="grid grid-cols-2 gap-4 mt-4">
       <div class="bg-blue-50 dark:bg-gray-700 rounded-xl p-2 shadow-sm flex flex-col">
-        <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/Front-View.jpg" alt="Front View of Light-Based Canopy System" class="w-full h-full object-cover rounded-lg flex-grow" />
+        <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/images/site/Front-View.jpg" alt="Front View of Light-Based Canopy System" class="w-full h-full object-cover rounded-lg flex-grow" />
         <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Front View</p>
       </div>
       <div class="bg-blue-50 dark:bg-gray-700 rounded-xl p-2 shadow-sm flex flex-col">
-        <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/Back-View.jpg" alt="Back View of Arduino Canopy Project" class="w-full h-full object-cover rounded-lg flex-grow" />
+        <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/images/site/Back-View.jpg" alt="Back View of Arduino Canopy Project" class="w-full h-full object-cover rounded-lg flex-grow" />
         <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Back View</p>
       </div>
       <div class="bg-blue-50 dark:bg-gray-700 rounded-xl p-2 shadow-sm flex flex-col">
-        <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/Side-View.jpg" alt="Side View of Smart Canopy Prototype" class="w-full h-full object-cover rounded-lg flex-grow" />
+        <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/images/site/Side-View.jpg" alt="Side View of Smart Canopy Prototype" class="w-full h-full object-cover rounded-lg flex-grow" />
         <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Side View</p>
       </div>
       <div class="bg-blue-50 dark:bg-gray-700 rounded-xl p-2 shadow-sm flex flex-col">
-        <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/Top-View.jpg" alt="Top View of Light-Responsive Canopy" class="w-full h-full object-cover rounded-lg flex-grow" />
+        <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/images/site/Top-View.jpg" alt="Top View of Light-Responsive Canopy" class="w-full h-full object-cover rounded-lg flex-grow" />
         <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Top View</p>
       </div>
     </div>
@@ -124,21 +126,59 @@
 
   <section id="schematics" class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md text-center mt-12 transition-colors duration-300">
     <h2 class="text-blue-600 font-bold text-2xl mb-4">Circuit Schematics</h2>
-    <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/Wiring.jpg" alt="Circuit Schematics" class="w-full rounded-xl" />
+    <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/images/site/Wiring.jpg" alt="Circuit Schematics" class="w-full rounded-xl" />
     <p class="mt-4">Wiring setup showing Electronic Box and Arduino connections</p>
-    <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/Circuit-Schematics.png" alt="Electronic circuit schematics for light-based canopy" class="w-full rounded-xl mt-6" />
+    <img src="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/images/site/Circuit-Schematics.png" alt="Electronic circuit schematics for light-based canopy" class="w-full rounded-xl mt-6" />
     <p class="mt-4">Complete circuit diagram for the light-responsive canopy system</p>
   </section>
 
-  <section class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md text-center my-8 transition-colors duration-300">
+  <section id="code" class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md text-center my-8 transition-colors duration-300">
+    <h2 class="text-blue-600 font-bold text-2xl mb-4">Arduino Code</h2>
+    <p class="mb-4">Download the Arduino sketch that controls the Light-Based Canopy system. 
+      You can upload this directly to your Arduino Uno and explore how the canopy responds to light.</p>
+    
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="https://raw.githubusercontent.com/Rainier-PS/Light-Based-Canopy-System/main/Light-Based_Canopy_System.ino" 
+        download="Light-Based_Canopy_System.ino"
+        class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 hover:scale-105 transition-transform">
+        <i class="fas fa-download mr-2"></i> Download Code
+      </a>
+      <a href="https://github.com/Rainier-PS/Light-Based-Canopy-System" target="_blank"
+        class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 hover:scale-105 transition-transform">
+        <i class="fab fa-github mr-2"></i> View on GitHub
+      </a>
+    </div>
+  </section>
+
+  <section id="contact" class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md text-center my-8 transition-colors duration-300">
     <h2 class="text-blue-600 font-bold text-xl mb-4">Connect With Me</h2>
     <div class="flex justify-center gap-4 flex-wrap">
-      <a href="https://rainier-ps.github.io/Landing-Page_Rainier/" target="_blank" aria-label="My Portfolio" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-gray-700 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fas fa-user"></i></a>
-      <a href="https://github.com/Rainier-PS" target="_blank" aria-label="GitHub Profile" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-gray-700 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fab fa-github"></i></a>
-      <a href="mailto:rainierps8@gmail.com" aria-label="Email Me" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-gray-700 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fas fa-envelope"></i></a>
-      <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn Profile" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-gray-700 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fab fa-linkedin"></i></a>
-      <a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter Profile" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-gray-700 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fab fa-twitter"></i></a>
-      <a href="https://instagram.com/rainierps8" target="_blank" aria-label="Instagram Profile" class="text-blue-600 text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-gray-700 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1"><i class="fab fa-instagram"></i></a>
+      <a href="https://rainier-ps.github.io/Personal-Website/" target="_blank" aria-label="My Portfolio" 
+        class="text-white text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-blue-600 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1">
+        <i class="fas fa-user"></i>
+      </a>
+      <a href="https://github.com/Rainier-PS" target="_blank" aria-label="GitHub Profile" 
+        class="text-white text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-blue-600 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:rainierps8@gmail.com" aria-label="Email Me" 
+        class="text-white text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-blue-600 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <!--
+      <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn Profile" 
+        class="text-white text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-blue-600 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter Profile" 
+        class="text-white text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-blue-600 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1">
+        <i class="fab fa-twitter"></i>
+      </a>
+      -->
+      <a href="https://instagram.com/rainierps8" target="_blank" aria-label="Instagram Profile" 
+        class="text-white text-xl w-10 h-10 rounded-lg flex items-center justify-center bg-white dark:bg-blue-600 shadow hover:bg-blue-300 hover:text-white transition-transform hover:-translate-y-1">
+        <i class="fab fa-instagram"></i>
+      </a>
     </div>
   </section>
 
