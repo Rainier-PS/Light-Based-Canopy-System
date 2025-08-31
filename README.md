@@ -3,7 +3,7 @@ Welcome to the project website showcasing my eco-friendly smart home prototype u
 
 ## Demo
 
-Check out this site live at: [Live Site](https://rainier-ps.github.io/Personal-Website/)!
+Check out this site live at: [Live Site](https://rainier-ps.github.io/Light-Based-Canopy-System/)!
 
 ## Usage
 
